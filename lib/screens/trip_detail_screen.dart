@@ -94,10 +94,16 @@ class TripDetailScreen extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 100,
+              height: 70,
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.delete),
+        onPressed: () {
+          Navigator.of(context).popAndPushNamed(tripid);
+        },
       ),
     );
   }

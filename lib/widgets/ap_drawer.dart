@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import '../screens/filters_screen.dart';
 
@@ -13,10 +12,9 @@ class AppDrawer extends StatelessWidget {
         style: TextStyle(
             fontFamily: 'ElMessiri', fontSize: 40, fontWeight: FontWeight.bold),
       ),
-      onTap: link ,
+      onTap: link,
     );
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -37,13 +35,13 @@ class AppDrawer extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          buildListTile('الرحلات', Icons.card_travel,
-           () {Navigator.of(context).pushNamed('/'); }
-           
-           ),
-          buildListTile('التصفية', Icons.filter_list, 
-          () { Navigator.of(context).pushNamed(filtersScreen.screenRoute); }
-          ),
+          buildListTile('الرحلات', Icons.card_travel, () {
+            Navigator.of(context).pushReplacementNamed('/');
+          }),
+          buildListTile('التصفية', Icons.filter_list, () {
+            Navigator.of(context)
+                .pushReplacementNamed(filtersScreen.screenRoute);
+          }),
         ],
       ),
     );
