@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:traveling_app/app_data.dart';
-import 'package:traveling_app/models/trip.dart';
+import '../app_data.dart';
+import '../models/trip.dart';
 
 class TripDetailScreen extends StatelessWidget {
   static const screenRoute = '/trip-detail'; // تعريف عنوان لصفحة
@@ -102,7 +102,7 @@ class TripDetailScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.delete),
         onPressed: () {
-          Navigator.of(context).popAndPushNamed(tripid);
+          Navigator.of(context).pop(tripid);
         },
       ),
     );

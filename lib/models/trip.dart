@@ -43,4 +43,6 @@ class Trip {
     required this.isInWinter,
     required this.isForFamilies,
   });
+
+  
 }

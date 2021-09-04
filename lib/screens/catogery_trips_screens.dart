@@ -1,38 +1,64 @@
 import 'package:flutter/material.dart';
+import '../models/trip.dart';
 import '../widgets/trip_item.dart';
 import '../app_data.dart';
-import '../widgets/trip_item.dart';
 
-class CatogerTripsScreen extends StatelessWidget {
-  // final String categoryId;
-  // final String categoryTitle;
+class CategoryTripsScreen extends StatefulWidget {
   static const screenRoute = '/category-trips';
-  // const CatogerTripsScreen(this.categoryId, this.categoryTitle);
+
   @override
-  Widget build(BuildContext context) {
+  _CategoryTripsScreenState createState() => _CategoryTripsScreenState();
+}
+
+class _CategoryTripsScreenState extends State<CategoryTripsScreen> {
+  var categoryTitle;
+  List<Trip> displayTrips = [];
+
+  @override
+  void initState() {
+    //...
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
     final routeArgument =
         ModalRoute.of(context)!.settings.arguments as Map<String, String>;
-    final categoryid = routeArgument['id'];
-    final categoryTitle = routeArgument['title'];
-    final filteredTrips = Trips_data.where((trip) {
-      return trip.categories.contains(categoryid);
+    final categoryId = routeArgument['id'];
+    categoryTitle = routeArgument['title'];
+    displayTrips = Trips_data.where((trip) {
+      return trip.categories.contains(categoryId);
     }).toList();
+    super.didChangeDependencies();
+  }
 
+  void _removeTrip(String tripId) {
+    setState(() {
+      displayTrips.removeWhere((trip) => trip.id == tripId);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(categoryTitle!),
+        title: Text(categoryTitle),
       ),
       body: ListView.builder(
         itemBuilder: (ctx, index) {
           return TripItem(
-              id: filteredTrips[index].id,
-              title: filteredTrips[index].title,
-              imageUrl: filteredTrips[index].imageUrl,
-              duration: filteredTrips[index].duration,
-              season: filteredTrips[index].season,
-              tripType: filteredTrips[index].tripType);
+            id: displayTrips[index].id,
+            title: displayTrips[index].title,
+            imageUrl: displayTrips[index].imageUrl,
+            duration: displayTrips[index].duration,
+            tripType: displayTrips[index].tripType,
+            season: displayTrips[index].season,
+            removeItem: _removeTrip,
+
+            // removeItem: _removeTrip,
+          );
         },
-        itemCount: filteredTrips.length,
+        itemCount: displayTrips.length,
       ),
     );
   }
