@@ -5,7 +5,8 @@ import '../app_data.dart';
 
 class CategoryTripsScreen extends StatefulWidget {
   static const screenRoute = '/category-trips';
-
+  final List<Trip> availableTrips;
+  CategoryTripsScreen(this.availableTrips); 
   @override
   _CategoryTripsScreenState createState() => _CategoryTripsScreenState();
 }
@@ -26,7 +27,7 @@ class _CategoryTripsScreenState extends State<CategoryTripsScreen> {
         ModalRoute.of(context)!.settings.arguments as Map<String, String>;
     final categoryId = routeArgument['id'];
     categoryTitle = routeArgument['title'];
-    displayTrips = Trips_data.where((trip) {
+    displayTrips = widget.availableTrips.where((trip) {
       return trip.categories.contains(categoryId);
     }).toList();
     super.didChangeDependencies();
@@ -53,7 +54,7 @@ class _CategoryTripsScreenState extends State<CategoryTripsScreen> {
             duration: displayTrips[index].duration,
             tripType: displayTrips[index].tripType,
             season: displayTrips[index].season,
-            removeItem: _removeTrip,
+            // removeItem: _removeTrip,
 
             // removeItem: _removeTrip,
           );

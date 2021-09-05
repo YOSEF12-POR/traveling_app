@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../app_data.dart';
 import '../widgets/Category_item.dart';
 
-class CatogriesScreen extends StatelessWidget {
+class CategoriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView(

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import '../models/trip.dart';
 import '../widgets/ap_drawer.dart';
 import '../screens/categories_screens.dart';
 import '../screens/favortites_screen.dart';
 
 class TabsScreen extends StatefulWidget {
   // ااذا بدنا نعمل تاب سفلية بنستخدم ستات فل ويدجت
-  const TabsScreen({Key? key}) : super(key: key);
-
+  final List<Trip> favoriteTrips;
+  TabsScreen(this.favoriteTrips);
   @override
   _TabsScreenState createState() => _TabsScreenState();
 }
@@ -21,19 +22,32 @@ class _TabsScreenState extends State<TabsScreen> {
 
   int _seclectScreenIndex = 0;
 
-  final List<Map<String, Object>> _secreen = [
-    {'Screen': CatogriesScreen(), 'Title': 'تصنيفات الرحلات'},
-    {'Screen': FavortitesScreen(), 'Title': 'المفضلة'},
-  ];
+    late List<Map<String, Object>> _screens;
+
+    
+  @override
+  void initState() {
+    _screens = [
+      {
+        'Screen': CategoriesScreen(),
+        'Title': 'تصنيفات الرحلات',
+      },
+      {
+        'Screen': FavoritesScreen(widget.favoriteTrips),
+        'Title': 'الرحلات المفضلة',
+      },
+    ];
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_secreen[_seclectScreenIndex]['Title'] as String),
+        title: Text(_screens[_seclectScreenIndex]['Title'] as String),
       ),
    drawer:AppDrawer(),
-      body: _secreen[_seclectScreenIndex]['Screen']
+      body: _screens[_seclectScreenIndex]['Screen']
           as Widget, // بحدد الشاشات الي بدي اختراهم
       bottomNavigationBar: BottomNavigationBar(
         // عشان احط تاب سفليه للتطبيق

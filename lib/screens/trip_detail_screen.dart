@@ -5,6 +5,10 @@ import '../models/trip.dart';
 class TripDetailScreen extends StatelessWidget {
   static const screenRoute = '/trip-detail'; // تعريف عنوان لصفحة
 
+  final Function manageFavorite;
+  final Function isFavorite;
+
+  TripDetailScreen(this.manageFavorite, this.isFavorite);
   Widget buildSectionTitle(BuildContext context, String titleText) {
     // ميثود من نوع ويدجت لتنظيم الكود
     return Container(
@@ -100,10 +104,8 @@ class TripDetailScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.delete),
-        onPressed: () {
-          Navigator.of(context).pop(tripid);
-        },
+        child: Icon(isFavorite(tripid) ? Icons.star : Icons.star_border),
+        onPressed: () => manageFavorite(tripid),
       ),
     );
   }

@@ -40,7 +40,7 @@ class AppDrawer extends StatelessWidget {
           }),
           buildListTile('التصفية', Icons.filter_list, () {
             Navigator.of(context)
-                .pushReplacementNamed(filtersScreen.screenRoute);
+                .pushReplacementNamed(FiltersScreen.screenRoute);
           }),
         ],
       ),
