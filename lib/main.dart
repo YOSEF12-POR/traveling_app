@@ -6,6 +6,9 @@ import '../screens/filters_screen.dart';
 import '../screens/tabs_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import '../screens/trip_detail_screen.dart';
+ 
+// git add . لرفع على القيت هب
+ // git push origin master
 
 void main() {
   runApp(MyApp());
