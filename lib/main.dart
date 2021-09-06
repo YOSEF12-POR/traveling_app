@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:traveling_app/app_data.dart';
+import 'package:traveling_app/screens/counction.dart';
 import '../models/trip.dart';
 import 'package:traveling_app/screens/catogery_trips_screens.dart';
 import '../screens/filters_screen.dart';
 import '../screens/tabs_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import '../screens/trip_detail_screen.dart';
- 
+
 // git add . لرفع على القيت هب
- // git push origin master
+// git push origin master
 
 void main() {
   runApp(MyApp());
@@ -25,14 +26,14 @@ class _MyAppState extends State<MyApp> {
     'winter': false,
     'family': false,
   };
-   List<Trip> _availableTrips = Trips_data;
-   List<Trip> _favoriteTrips = [];
+  List<Trip> _availableTrips = Trips_data;
+  List<Trip> _favoriteTrips = [];
   void _changeFilters(Map<String, bool> filterData) {
     setState(() {
       _filters = filterData;
 
       _availableTrips = Trips_data.where((trip) {
-          if (_filters['summer'] == true && trip.isInSummer != true) {
+        if (_filters['summer'] == true && trip.isInSummer != true) {
           return false;
         }
         if (_filters['winter'] == true && trip.isInWinter != true) {
@@ -45,7 +46,8 @@ class _MyAppState extends State<MyApp> {
       }).toList();
     });
   }
-void _manageFavorite(String tripId) {
+
+  void _manageFavorite(String tripId) {
     final existingIndex =
         _favoriteTrips.indexWhere((trip) => trip.id == tripId);
     if (existingIndex >= 0) {
@@ -68,6 +70,8 @@ void _manageFavorite(String tripId) {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -100,9 +104,13 @@ void _manageFavorite(String tripId) {
 
       routes: {
         '/': (ctx) => TabsScreen(_favoriteTrips),
-        CategoryTripsScreen.screenRoute: (ctx) => CategoryTripsScreen(_availableTrips),
-        TripDetailScreen.screenRoute: (ctx) => TripDetailScreen(_manageFavorite,_isFovarite),
+        CategoryTripsScreen.screenRoute: (ctx) =>
+            CategoryTripsScreen(_availableTrips),
+        TripDetailScreen.screenRoute: (ctx) =>
+            TripDetailScreen(_manageFavorite, _isFovarite),
         FiltersScreen.screenRoute: (ctx) => FiltersScreen(_changeFilters),
+                CounctionPage.screenRoute:(ctx)=>CounctionPage(),
+
         // _filters,
       },
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:traveling_app/screens/counction.dart';
 import '../screens/filters_screen.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -41,6 +42,10 @@ class AppDrawer extends StatelessWidget {
           buildListTile('التصفية', Icons.filter_list, () {
             Navigator.of(context)
                 .pushReplacementNamed(FiltersScreen.screenRoute);
+          }),
+          buildListTile('تواصل', Icons.email, () {
+            Navigator.of(context)
+                .pushReplacementNamed(CounctionPage.screenRoute);
           }),
         ],
       ),

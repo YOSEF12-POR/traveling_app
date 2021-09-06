@@ -4,10 +4,10 @@ import 'package:traveling_app/widgets/ap_drawer.dart';
 class FiltersScreen extends StatefulWidget {
   static const screenRoute = '/filters';
   final Function saveFilters;
-  // final Map<String, var> currentFilters;
+  // final Map<String, bool> currentFilters;
 
   FiltersScreen( this.saveFilters);
-// this.currentFilters,
+//this.currentFilters,
   @override
   _FiltersScreenState createState() => _FiltersScreenState();
 }
@@ -19,9 +19,9 @@ class _FiltersScreenState extends State<FiltersScreen> {
 
   // @override
   // initState() {
-  //   _summer =  widget.currentFilters['summer'];
-  //   _winter = widget.currentFilters['winter'];
-  //   _family =  widget.currentFilters['family'];
+  //   _summer = widget.currentFilters![''];
+  //   _winter = widget.currentFilters[''];
+  //   _family = widget.currentFilters[''];
   //   super.initState();
   // }
 
